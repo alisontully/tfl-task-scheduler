@@ -1,22 +1,22 @@
 # TFL Task Scheduler
 
-A RESTful service built with **FastAPI**, **SQLAlchemy**, and **APScheduler** that lets you schedule tasks to query [Transport for London (TFL) Line API](https://api.tfl.gov.uk/) disruptions at a specific time and store the results.  
+A RESTful service built with **FastAPI**, **SQLAlchemy**, and **APScheduler** that lets you schedule tasks to query [Transport for London (TFL) Line API](https://api.tfl.gov.uk/) disruptions at a specific time and store the results.
 
-This project was developed as part of the **WovenLight development exercise**.  
+This project was developed as part of the **WovenLight development exercise**.
 
 ---
 
 ## Features
 
-- Schedule a task at a given time for one or more TFL lines.  
-- Store the results of disruption queries in a database.  
-- Retrieve all tasks or a single task (with results if completed).  
-- Update or delete tasks before they run.  
-- REST API built with FastAPI.  
-- Jobs scheduled and run in the background using APScheduler.  
-- Database managed with SQLAlchemy (SQLite by default).  
-- Pre-commit hooks for formatting, linting, typing, and security checks.  
-- Packaged and containerized with Docker.  
+- Schedule a task at a given time for one or more TFL lines.
+- Store the results of disruption queries in a database.
+- Retrieve all tasks or a single task (with results if completed).
+- Update or delete tasks before they run.
+- REST API built with FastAPI.
+- Jobs scheduled and run in the background using APScheduler.
+- Database managed with SQLAlchemy (SQLite by default).
+- Pre-commit hooks for formatting, linting, typing, and security checks.
+- Packaged and containerized with Docker.
 
 ---
 
@@ -45,7 +45,7 @@ tests/
 ## Requirements
 
 - Python **3.12**
-- Conda (for environment management) or Docker  
+- Conda (for environment management) or Docker
 
 ---
 
@@ -87,7 +87,7 @@ docker compose down
 docker compose down -v
 ```
 
-App will be available at:  
+App will be available at:
 👉 [http://localhost:5555/docs](http://localhost:5555/docs) (interactive Swagger UI)
 
 ---
@@ -160,10 +160,10 @@ poetry run pre-commit run --all-files
 
 ## Limitations
 
-- Uses SQLite (not production-ready for concurrency).  
-- Tasks run in-process; no distributed scheduler.  
-- No authentication or multi-user separation.  
-- Results are stored as raw JSON strings from TFL API.  
+- Uses SQLite (not production-ready for concurrency).
+- Tasks run in-process; no distributed scheduler.
+- No authentication or multi-user separation.
+- Results are stored as raw JSON strings from TFL API.
 
 ---
 

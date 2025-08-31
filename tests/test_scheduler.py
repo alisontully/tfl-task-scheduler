@@ -1,5 +1,7 @@
 from datetime import datetime, timedelta
-from tfl_task_scheduler import scheduler, models
+
+from tfl_task_scheduler import models, scheduler
+
 
 def test_scheduler_add_and_remove(db_session):
     task = models.Task(

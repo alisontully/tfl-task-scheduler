@@ -4,10 +4,10 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import StaticPool
 
-from tfl_task_scheduler.db import Base, get_session
 from tfl_task_scheduler import db as db_module
-from tfl_task_scheduler.main import app
 from tfl_task_scheduler import scheduler
+from tfl_task_scheduler.db import Base, get_session
+from tfl_task_scheduler.main import app
 
 
 @pytest.fixture(scope="session")

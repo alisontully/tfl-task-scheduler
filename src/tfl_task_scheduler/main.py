@@ -1,4 +1,8 @@
+from __future__ import annotations
+
 from contextlib import asynccontextmanager
+from typing import AsyncIterator
+
 from fastapi import FastAPI
 
 from tfl_task_scheduler import db, scheduler
@@ -6,7 +10,8 @@ from tfl_task_scheduler.api import tasks
 
 
 @asynccontextmanager
-async def lifespan(app: FastAPI):
+async def lifespan(_app: FastAPI) -> AsyncIterator[None]:
+    """App lifespan: initialize DB, start scheduler; ensure clean shutdown."""
     db.init_db()
     scheduler.start()
     try:
