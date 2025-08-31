@@ -1,0 +1,75 @@
+[build-system]
+requires = ["poetry-core>=1.9.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "tfl-task-scheduler"
+version = "0.1.0"
+description = "A REST API for scheduling and running tasks against the TFL Line Disruption API"
+readme = "README.md"
+authors = ["Alison Tully <alison.tully11@gmail.com>"]
+license = "MIT"
+packages = [{ include = "tfl_task_scheduler", from = "src" }]
+
+[tool.poetry.dependencies]
+python = ">=3.12,<3.13"
+fastapi = "^0.115"
+uvicorn = { version = "^0.30", extras = ["standard"] }
+sqlalchemy = "^2.0"
+apscheduler = "^3.10"
+requests = "^2.32"
+pydantic = "^2.9"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3"
+httpx = "^0.27"
+responses = "^0.25"
+black = "^24.8"
+ruff = "^0.6"
+isort = "^5.13"
+bandit = "^1.7"
+mypy = "^1.11"
+pydocstyle = "^6.3"
+pylint = "^3.2"
+pre-commit = "^3.7"
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+addopts = "-ra -q"
+testpaths = ["tests"]
+
+[tool.black]
+line-length = 88
+target-version = ["py310"]
+
+[tool.isort]
+profile = "black"
+line_length = 88
+
+[tool.ruff]
+line-length = 88
+select = ["E", "F", "I"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+disallow_untyped_defs = true
+ignore_missing_imports = true
+
+[tool.bandit]
+exclude_dirs = ["tests"]
+skips = ["B101"]  # allow assert statements in tests
+
+[tool.pydocstyle]
+convention = "google"
+add-ignore = ["D100", "D104"]  # ignore missing module/package docstrings
+
+[tool.pylint.'MESSAGES CONTROL']
+disable = [
+  "C0114",  # missing-module-docstring
+  "C0115",  # missing-class-docstring
+  "C0116",  # missing-function-docstring
+]
+
+[tool.pylint.format]
+max-line-length = 88

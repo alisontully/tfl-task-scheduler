@@ -1,0 +1,20 @@
+services:
+  api:
+    build: .
+    image: tfl-task-scheduler:local
+    container_name: tfl-api
+    ports:
+      - "5555:5555"
+    volumes:
+      - ./data:/app/data  # keep SQLite file persistent if you store it in /app/data/app.db
+    environment:
+      # example knobs if you use them in code
+      - APP_ENV=local
+      - LOG_LEVEL=info
+      - DB_URL=sqlite:////app/data/app.db
+    healthcheck:
+      test: ["CMD", "python", "-c", "import socket; s=socket.socket(); s.settimeout(2); s.connect(('127.0.0.1',5555))"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 15s

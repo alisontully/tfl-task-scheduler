@@ -1,0 +1,60 @@
+repos:
+  # General housekeeping hooks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-toml
+      - id: check-added-large-files
+
+  # Black for formatting
+  - repo: https://github.com/psf/black
+    rev: 24.8.0
+    hooks:
+      - id: black
+        language_version: python3.10
+
+  # isort for import sorting
+  - repo: https://github.com/PyCQA/isort
+    rev: 5.13.2
+    hooks:
+      - id: isort
+        name: isort (python)
+        args: ["--profile", "black"]
+
+  # Ruff for fast linting
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.6.2
+    hooks:
+      - id: ruff
+        args: [--fix]
+
+  # Pylint for deeper static analysis
+  - repo: https://github.com/PyCQA/pylint
+    rev: v3.2.6
+    hooks:
+      - id: pylint
+        additional_dependencies: [sqlalchemy, fastapi, apscheduler, requests, pydantic]
+
+  # Bandit for security scanning
+  - repo: https://github.com/PyCQA/bandit
+    rev: 1.7.10
+    hooks:
+      - id: bandit
+        args: ["-c", "pyproject.toml", "-r", "."]
+
+  # Mypy for static type checking
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.11.1
+    hooks:
+      - id: mypy
+        additional_dependencies: [sqlalchemy, fastapi, apscheduler, requests, pydantic]
+
+  # Pydocstyle for docstring conventions
+  - repo: https://github.com/PyCQA/pydocstyle
+    rev: 6.3.0
+    hooks:
+      - id: pydocstyle
+        args: ["--convention=google"]
