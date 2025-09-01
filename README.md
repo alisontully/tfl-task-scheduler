@@ -169,4 +169,4 @@ poetry run pre-commit run --all-files
 
 ## Time Spent
 
-~X–Y hours.
+3 hours. First time using **FastAPI**, **SQLAlchemy** and **APScheduler**, already familiar with **Docker**.
